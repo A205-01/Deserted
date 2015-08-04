@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="vertical"
+    android:layout_width="225dp"
+    android:layout_height="100dp"
+    android:background="@color/dialog_bg"
+    android:padding="12dip">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/exercise_dg_letter"
+        android:gravity="center_horizontal"
+        android:textColor="@color/dialog_text"
+        android:paddingBottom="12dip"/>
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/exc_dg_btnl"
+            android:text="@string/exercise_dg_btnl"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="startToExcByPlan"/>
+        <Button
+            android:id="@+id/exc_dg_btnr"
+            android:text="@string/exercise_dg_btnr"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="startToPlanPage"/>
+    </RelativeLayout>
+</LinearLayout>
+

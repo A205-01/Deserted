@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.loonies.exercisemanager.AddAnItemToPlanPage"
+    android:background="@color/back_green">
+        <fragment
+            android:id="@+id/id_title_fragment"
+            android:name="com.loonies.exercisemanager.ItemSelection"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height"
+            tools:layout="@layout/fragment_item_selection"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"></fragment>
+        <FrameLayout
+            android:id="@+id/id_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/id_title_fragment"
+            >
+        </FrameLayout>
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Exercise Manager</string>
+
+    <string name="start_button">开始吧</string>
+    <string name="done_button">完成</string>
+    <string name="continue_button">继续</string>
+    <string name="name">锻炼\n助手</string>
+    <string name="title_activity_main_page">MainPage</string>
+    <string name="exercise_btn">开始\n锻炼</string>
+    <string name="plan_btn">锻炼\n计划</string>
+    <string name="exercise_dg_letter">怎么锻炼呢？</string>
+    <string name="exercise_dg_btnl">按计划</string>
+    <string name="exercise_dg_btnr">新安排</string>
+    <string name="review_btn">回顾</string>
+    <string name="text_continue">是否继续添加下一项？</string>
+    <string name="addplan_btn">添加</string>
+    <string name="todayplan_text">今日计划</string>
+    <string name="oxy_btn">有氧</string>
+    <string name="strn_btn">力量</string>
+    <string name="edittext_item">项目:</string>
+    <string name="edittext_item_hint">项目名称</string>
+    <string name="edittext_hour_hint">请输入小时</string>
+    <string name="edittext_minute_hint">请输入分钟</string>
+    <string name="edittext_date">点击设置训练日期</string>
+    <string name="timetolast_time">持续时间</string>
+    <string name="edittext_weight_hint">请输入配重</string>
+    <string name="edittext_number_hint">请输入个数</string>
+    <string name="edittext_prop">该组细节</string>
+    <string name="edittext_groups">总共组数</string>
+    <string name="edittext_groups_hint">请输入训练组数</string>
+    <string name="edittext_kg">公斤</string>
+    <string name="edittext_number">个</string>
+    <string name="timetolast_time_hours">小时</string>
+    <string name="timetolast_time_minutes">分钟</string>
+    <string name="btn_rst_timer">点击计时或提醒休息结束</string>
+    <string name="exc_rcd_hnt">V正在锻炼，加油V</string>
+    <string name="edit_page_text">编辑</string>
+    <string name="edit_save_text">保存</string>
+    <string name="edit_cancel_text">取消</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_exercise_dialog">ExerciseDialog</string>
+    <string name="title_activity_plan_page">PlanPage</string>
+    <string name="title_activity_excercise_by_plan_page">ExcerciseByPlanPage</string>
+    <string name="title_activity_add_item_to_plan">AddItemToPlan</string>
+    <string name="title_activity_add_an_item_to_plan_page">AddAnItemToPlanPage</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_exercise_recording_page">ExerciseRecordingPage</string>
+    <string name="title_activity_adding_plan_dialog">AddingPlanDialog</string>
+    <string name="title_activity_review_page">ReviewPage</string>
+    <string name="title_activity_edit_oxy_page">EditOxyPage</string>
+    <string name="title_activity_edit_strn_page">EditStrnPage</string>
+</resources>

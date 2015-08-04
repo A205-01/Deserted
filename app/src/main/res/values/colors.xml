@@ -1,0 +1,13 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="back_green">#ff04aa5b</color>
+    <color name="letter_green">#ff5caa67</color>
+    <color name="dialog_bg">#ffffc814</color>
+    <color name="dialog_text">#ff0b0202</color>
+    <color name="listvb_bg">#ff16beff</color>
+    <color name="listvo_bg">#ffffab29</color>
+    <color name="item_selection">#ffff114b</color>
+    <color name="white">#fffdfbff</color>
+
+</resources>
