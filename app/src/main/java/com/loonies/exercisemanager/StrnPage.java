@@ -82,21 +82,6 @@ public class StrnPage extends Fragment implements OnClickListener {
                 break;
             case R.id.strn_set_date:
                 if(mListener!=null){
-                    mListener.strnPageInteractionSave();
-                    String item=itemName.getText().toString().trim();
-                    String weight=weightToDo.getText().toString().trim();
-                    String number=numberToDo.getText().toString().trim();
-                    String groups=groupsToDo.getText().toString().trim();
-                    Time t=new Time();
-                    t.setToNow();
-                    String now_time=t.year+"-"+t.month+"-"+t.monthDay;
-                    String sql="insert into ItemDb(item,hours,minutes,groups,datetime,isdone) values('"+item+"','"+weight+"','"+number+"','"+groups+"','"+now_time+"','"+4+"')";
-                    db.execSQL(sql);
-                    Toast.makeText(this.getActivity(), "saved", Toast.LENGTH_LONG).show();
-                    itemName.setText(null);
-                    weightToDo.setText(null);
-                    numberToDo.setText(null);
-                    groupsToDo.setText(null);
                 }
                 break;
         }

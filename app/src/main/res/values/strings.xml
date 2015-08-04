@@ -36,6 +36,7 @@
     <string name="exc_rcd_hnt">V正在锻炼，加油V</string>
     <string name="edit_page_text">编辑</string>
     <string name="edit_save_text">保存</string>
+    <string name="edit_del_text">删除</string>
     <string name="edit_cancel_text">取消</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -52,4 +53,6 @@
     <string name="title_activity_review_page">ReviewPage</string>
     <string name="title_activity_edit_oxy_page">EditOxyPage</string>
     <string name="title_activity_edit_strn_page">EditStrnPage</string>
+    <string name="all_plans">全部计划一览</string>
+    <string name="back_btn">返回</string>
 </resources>

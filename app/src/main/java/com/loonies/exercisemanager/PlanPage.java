@@ -38,8 +38,26 @@ public class PlanPage extends Activity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
                 // TODO Auto-generated method stub
-                Intent intent= new Intent(PlanPage.this,EditOxyPage.class);
-                startActivity(intent);
+                if(dataAll.get(arg2).getIsDone()<3){
+                    Intent intent= new Intent(PlanPage.this,EditOxyPage.class);
+                    intent.putExtra("id",dataAll.get(arg2).getId());
+                    intent.putExtra("name",dataAll.get(arg2).getItem());
+                    intent.putExtra("hours", dataAll.get(arg2).getHoursOrWeights());
+                    intent.putExtra("minutes",dataAll.get(arg2).getMinutesOrNumber());
+                    intent.putExtra("groups",dataAll.get(arg2).getGroups());
+                    intent.putExtra("timeEdit",dataAll.get(arg2).getWrTime());
+                    startActivity(intent);
+                }
+                else if(dataAll.get(arg2).getIsDone()>3){
+                    Intent intent= new Intent(PlanPage.this,EditStrnPage.class);
+                    intent.putExtra("id",dataAll.get(arg2).getId());
+                    intent.putExtra("name",dataAll.get(arg2).getItem());
+                    intent.putExtra("weights", dataAll.get(arg2).getHoursOrWeights());
+                    intent.putExtra("numbers",dataAll.get(arg2).getMinutesOrNumber());
+                    intent.putExtra("groups",dataAll.get(arg2).getGroups());
+                    intent.putExtra("timeEdit",dataAll.get(arg2).getWrTime());
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -65,6 +83,10 @@ public class PlanPage extends Activity {
     }
     public void addPlan(View view){
         Intent intent=new Intent(this,AddAnItemToPlanPage.class);
+        startActivity(intent);
+    }
+    public void review(View view){
+        Intent intent=new Intent(this,ExcerciseByPlanPage.class);
         startActivity(intent);
     }
 }

@@ -91,23 +91,6 @@ public class OxyPage extends Fragment implements OnClickListener {
                 break;
             case R.id.oxy_set_date:
                 if(mListener!=null){
-                    String item=itemName.getText().toString().trim();
-                    String hours=timeToLastH.getText().toString().trim();
-                    String minutes=timeToLastM.getText().toString().trim();
-                    String groups=groupsTodo.getText().toString().trim();
-                    //SimpleDateFormat format=new SimpleDateFormat("yyyyYearMMMounthddDay hh:mm:ss");
-                    //String now_time=format.format(new Date());
-                    Time t=new Time();
-                    t.setToNow();
-                    String now_time=t.year+"-"+t.month+"-"+t.monthDay;
-                    String sql="insert into ItemDb(item,hours,minutes,groups,datetime,isdone) values('"+item+"','"+hours+"','"+minutes+"','"+groups+"','"+now_time+"','"+0+"')";
-                    db.execSQL(sql);
-                    Toast.makeText(this.getActivity(), "saved", Toast.LENGTH_LONG).show();
-                    mListener.oxyPageInteractionSave();
-                    itemName.setText(null);
-                    timeToLastM.setText(null);
-                    timeToLastH.setText(null);
-                    groupsTodo.setText(null);
                 }
                 break;
         }
@@ -168,16 +151,4 @@ public class OxyPage extends Fragment implements OnClickListener {
         super.onDetach();
         mListener = null;
     }
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-
-
 }

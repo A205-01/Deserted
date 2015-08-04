@@ -20,31 +20,36 @@
         </activity>
         <activity
             android:name=".MainPage"
-            android:label="@string/title_activity_main_page" >
+            android:label="@string/title_activity_main_page"
+            android:launchMode="singleInstance">
         </activity>
         <activity
             android:name=".ExerciseDialog"
             android:label="@string/title_activity_exercise_dialog"
-            android:theme="@android:style/Theme.Dialog" >
+            android:theme="@android:style/Theme.Dialog"
+            android:launchMode="singleInstance">
         </activity>
         <activity
             android:name=".PlanPage"
-            android:label="@string/title_activity_plan_page" >
+            android:label="@string/title_activity_plan_page"
+            android:launchMode="singleInstance">
         </activity>
         <activity
             android:name=".ExcerciseByPlanPage"
             android:finishOnTaskLaunch="true"
-            android:label="@string/title_activity_excercise_by_plan_page" >
+            android:label="@string/title_activity_excercise_by_plan_page"
+            android:launchMode="singleInstance">
         </activity>
         <activity
             android:name=".AddAnItemToPlanPage"
-            android:finishOnTaskLaunch="true"
-            android:label="@string/title_activity_add_an_item_to_plan_page" >
+            android:label="@string/title_activity_add_an_item_to_plan_page"
+            android:launchMode="singleInstance">
         </activity>
         <activity
             android:name=".ExerciseRecordingPage"
             android:finishOnTaskLaunch="true"
-            android:label="@string/title_activity_exercise_recording_page" >
+            android:label="@string/title_activity_exercise_recording_page"
+            android:launchMode="singleInstance">
         </activity>
         <activity
             android:name=".AddingPlanDialog"
@@ -53,17 +58,20 @@
         </activity>
         <activity
             android:name=".ReviewPage"
-            android:label="@string/title_activity_review_page" >
+            android:label="@string/title_activity_review_page"
+            android:launchMode="singleInstance">
         </activity>
         <activity
             android:name=".EditOxyPage"
             android:label="@string/title_activity_edit_oxy_page"
-            android:theme="@android:style/Theme.Dialog">
+            android:theme="@android:style/Theme.Dialog"
+            android:launchMode="singleInstance">
         </activity>
         <activity
             android:name=".EditStrnPage"
             android:label="@string/title_activity_edit_strn_page"
-            android:theme="@android:style/Theme.Dialog">
+            android:theme="@android:style/Theme.Dialog"
+            android:launchMode="singleInstance">
         </activity>
     </application>
 
