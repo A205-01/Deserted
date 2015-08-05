@@ -42,6 +42,7 @@
     <string name="edit_cancel_text">取消</string>
     <string name="height">身高(cm)</string>
     <string name="weight">体重(kg)</string>
+    <string name="time_up">时间到</string>
     <string name="hello">请您补全信息</string>
     <string name="resting">休息中</string>
     <string name="toothin">太瘦了</string>

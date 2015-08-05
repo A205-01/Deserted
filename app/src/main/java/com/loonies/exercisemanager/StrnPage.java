@@ -1,7 +1,10 @@
 package com.loonies.exercisemanager;
 
+import java.util.Calendar;
 import java.util.Date;
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View.OnClickListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -24,7 +28,7 @@ import java.util.Date;
 
 
 
-public class StrnPage extends Fragment implements OnClickListener {
+public class StrnPage extends Fragment implements OnClickListener,DatePickerDialog.OnDateSetListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,6 +38,8 @@ public class StrnPage extends Fragment implements OnClickListener {
     private String mParam1;
     private String mParam2;
 
+    private Calendar c;
+    private Dialog dialog;
     private SQLiteDatabase db;
     private ImageButton btnCancel;
     private ImageButton btnSave;
@@ -42,7 +48,7 @@ public class StrnPage extends Fragment implements OnClickListener {
     private EditText weightToDo;
     private EditText numberToDo;
     private EditText groupsToDo;
-
+    private String now_time;
 
     public interface StrnPageListener {
         public void strnPageInteractionSave();
@@ -68,10 +74,8 @@ public class StrnPage extends Fragment implements OnClickListener {
                     String weight=weightToDo.getText().toString().trim();
                     String number=numberToDo.getText().toString().trim();
                     String groups=groupsToDo.getText().toString().trim();
-                    Time t=new Time();
-                    t.setToNow();
-                    String now_time=t.year+"-"+t.month+"-"+t.monthDay;
-                    String sql="insert into ItemDb(item,hours,minutes,groups,datetime,isdone) values('"+item+"','"+weight+"','"+number+"','"+groups+"','"+now_time+"','"+4+"')";
+
+                    String sql="insert into ItemDb(item,hours,minutes,groups,datetime,isdone) values('"+item+"','"+weight+"','"+number+"','"+groups+"','"+this.now_time+"','"+4+"')";
                     db.execSQL(sql);
                     Toast.makeText(this.getActivity(), "saved", Toast.LENGTH_LONG).show();
                     itemName.setText(null);
@@ -81,8 +85,14 @@ public class StrnPage extends Fragment implements OnClickListener {
                 }
                 break;
             case R.id.strn_set_date:
-                if(mListener!=null){
-                }
+                c = Calendar.getInstance();
+                dialog=new DatePickerDialog(
+                        this.getActivity(),this,
+                        c.get(Calendar.YEAR), // 传入年份
+                        c.get(Calendar.MONTH), // 传入月份
+                        c.get(Calendar.DAY_OF_MONTH) // 传入天数
+                );
+                dialog.show();
                 break;
         }
     }
@@ -127,9 +137,15 @@ public class StrnPage extends Fragment implements OnClickListener {
         btnCancel.setOnClickListener(this);
         btnSetDate.setOnClickListener(this);
         btnSave.setOnClickListener(this);
+        Time t=new Time();
+        t.setToNow();
+        this.now_time=t.year+"-"+t.month+"-"+t.monthDay;
         return view;
     }
-
+    public void onDateSet(DatePicker dp, int year,int month, int dayOfMonth) {
+        this.now_time=year+"-"+(++month)+"-"+dayOfMonth;
+        Toast.makeText(this.getActivity(),this.now_time, Toast.LENGTH_LONG).show();
+    }
     // TODO: Rename method, update argument and hook method into UI event
 
 

@@ -23,6 +23,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +123,9 @@ public class ExerciseRecordingPage extends Activity implements OnClickListener {
         //loop loop mode (0 = no loop, -1 = loop forever)
         //rate playback rate (1.0 = normal playback, range 0.5 to 2.0)
         sp.play(soundId, 1.0f, 0.3f, 0, 0, 2.0f);
+    }
+    public void indicate(){
+        Toast.makeText(this,getText(R.string.time_up), Toast.LENGTH_LONG).show();
     }
     public void onClick(View v){
         switch (v.getId()){

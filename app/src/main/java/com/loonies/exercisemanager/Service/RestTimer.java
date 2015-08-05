@@ -52,6 +52,7 @@ public class RestTimer implements Runnable {
             if(mSecond==1) {
                 isRunning = false;
                 activity.play();
+                activity.indicate();
             }
             computeTime();
             btnToSet.setText(Integer.toString(mSecond));

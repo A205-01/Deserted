@@ -1,8 +1,11 @@
 package com.loonies.exercisemanager;
 
 
+import java.util.Calendar;
 import java.util.Date;
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View.OnClickListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -30,11 +34,13 @@ import java.util.Date;
  * Use the {@link OxyPage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OxyPage extends Fragment implements OnClickListener {
+public class OxyPage extends Fragment implements OnClickListener,DatePickerDialog.OnDateSetListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private Calendar c;
+    private Dialog dialog;
     private String mParam1;
     private String mParam2;
     private SQLiteDatabase db;
@@ -45,6 +51,7 @@ public class OxyPage extends Fragment implements OnClickListener {
     private EditText timeToLastH;
     private EditText timeToLastM;
     private EditText groupsTodo;
+    private String now_time;
 
 
     public interface OxyFragmentListener {
@@ -76,10 +83,7 @@ public class OxyPage extends Fragment implements OnClickListener {
                     String groups=groupsTodo.getText().toString().trim();
                     //SimpleDateFormat format=new SimpleDateFormat("yyyy��MM��dd�� hh:mm:ss");
                     //String now_time=format.format(new Date());
-                    Time t=new Time();
-                    t.setToNow();
-                    String now_time=t.year+"-"+t.month+"-"+t.monthDay;
-                    String sql="insert into ItemDb(item,hours,minutes,groups,datetime,isdone) values('"+item+"','"+hours+"','"+minutes+"','"+groups+"','"+now_time+"','"+0+"')";
+                    String sql="insert into ItemDb(item,hours,minutes,groups,datetime,isdone) values('"+item+"','"+hours+"','"+minutes+"','"+groups+"','"+this.now_time+"','"+0+"')";
                     db.execSQL(sql);
                     Toast.makeText(this.getActivity(), "saved", Toast.LENGTH_LONG).show();
                     mListener.oxyPageInteractionSave();
@@ -90,12 +94,21 @@ public class OxyPage extends Fragment implements OnClickListener {
                 }
                 break;
             case R.id.oxy_set_date:
-                if(mListener!=null){
-                }
+                c = Calendar.getInstance();
+                dialog=new DatePickerDialog(
+                        this.getActivity(),this,
+                        c.get(Calendar.YEAR), // 传入年份
+                        c.get(Calendar.MONTH), // 传入月份
+                        c.get(Calendar.DAY_OF_MONTH) // 传入天数
+                );
+                dialog.show();
                 break;
         }
     }
-
+    public void onDateSet(DatePicker dp, int year,int month, int dayOfMonth) {
+        this.now_time=year+"-"+(++month)+"-"+dayOfMonth;
+        Toast.makeText(this.getActivity(),this.now_time, Toast.LENGTH_LONG).show();
+    }
     public static OxyPage newInstance(String param1, String param2) {
         OxyPage fragment = new OxyPage();
         Bundle args = new Bundle();
@@ -133,6 +146,9 @@ public class OxyPage extends Fragment implements OnClickListener {
         btnSetDate.setOnClickListener(this);
         btnSave.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
+        Time t=new Time();
+        t.setToNow();
+        this.now_time=t.year+"-"+t.month+"-"+t.monthDay;
         return view;
     }
     @Override
