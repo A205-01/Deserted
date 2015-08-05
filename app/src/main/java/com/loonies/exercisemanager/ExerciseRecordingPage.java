@@ -38,9 +38,9 @@ public class ExerciseRecordingPage extends Activity {
             public void onItemClick(AdapterView<?> arg0, View arg1, final int arg2,
                                     long arg3) {
                 AlertDialog.Builder builder=new Builder(ExerciseRecordingPage.this);
-                builder.setTitle("record");
-                builder.setMessage("done?");
-                builder.setPositiveButton("finished", new DialogInterface.OnClickListener() {
+                builder.setTitle(getText(R.string.recording));
+                builder.setMessage(getText(R.string.WIP));
+                builder.setPositiveButton(getText(R.string.done_button), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (dataAll.get(arg2).getIsDone() < 3) {
@@ -54,7 +54,7 @@ public class ExerciseRecordingPage extends Activity {
                         onResume();
                     }
                 });
-                builder.setNegativeButton("unfinished", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getText(R.string.undone), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (dataAll.get(arg2).getIsDone() < 3) {

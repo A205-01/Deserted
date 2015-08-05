@@ -2,14 +2,16 @@ package com.loonies.exercisemanager.data;
 
 import com.loonies.exercisemanager.R;
 import com.loonies.exercisemanager.data.ListItemTextView;
+
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
-
 /**
  * Created by Õı∫∆÷€ on 2015/8/3.
  */
@@ -49,16 +51,16 @@ public class ListViewAdapterA extends BaseAdapter {
         }
         TextView item_name=(TextView) view.findViewById(R.id.base_item_name);
         TextView item_time=(TextView) view.findViewById(R.id.base_item_time);
-        TextView item_done=(TextView) view.findViewById(R.id.base_item_done);
+        ImageView item_done=(ImageView) view.findViewById(R.id.base_item_done);
         ListItemTextView myltv=data.get(arg0);
         item_name.setText(myltv.getItem());
         item_time.setText(myltv.getWrTime());
         if(myltv.getIsDone()==0||myltv.getIsDone()==4)
-            item_done.setText(" waiting");
+            item_done.setImageResource(R.drawable.unfinish);
         if(myltv.getIsDone()==1||myltv.getIsDone()==5)
-            item_done.setText(" not finished");
+            item_done.setImageResource(R.drawable.unfished);
         if(myltv.getIsDone()==2||myltv.getIsDone()==6)
-            item_done.setText(" is done");
+            item_done.setImageResource(R.drawable.finish);
         return view;
     }
 }

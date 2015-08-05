@@ -12,6 +12,12 @@
         android:orientation="vertical"
         android:background="@color/back_green"
         android:weightSum="1">
+        <TextView
+            android:id="@+id/BMI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_text"
+            android:gravity="center" />
         <ImageButton
             android:id="@+id/exercise_btn"
             android:layout_width="200dp"

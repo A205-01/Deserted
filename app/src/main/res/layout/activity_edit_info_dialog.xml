@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="150dp"
+    android:background="@color/dialog_bg"
+    android:padding="12dip">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_personnal"
+            android:textColor="@color/dialog_text"
+            android:paddingBottom="12dip"
+            android:id="@+id/textViewPersonnal"
+            android:layout_gravity="center"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/height"
+            android:textSize="@dimen/title_btn"
+            android:layout_weight="0"/>
+        <EditText
+            android:id="@+id/height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:numeric="integer"
+            android:clickable="false"
+            android:autoText="false" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/weight"
+            android:textSize="@dimen/title_btn"
+            android:layout_weight="0"/>
+        <EditText
+            android:id="@+id/weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:numeric="integer" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_edit_cancel_person"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/edit_cancel_text"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <Button
+            android:id="@+id/btn_edit_save_person"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/edit_save_text"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</LinearLayout>
+
