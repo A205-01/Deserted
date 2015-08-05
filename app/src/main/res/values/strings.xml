@@ -33,7 +33,7 @@
     <string name="edittext_number">个</string>
     <string name="timetolast_time_hours">小时</string>
     <string name="timetolast_time_minutes">分钟</string>
-    <string name="btn_rst_timer">点击计时或提醒休息结束</string>
+    <string name="btn_rst_timer">点击计时提醒休息结束</string>
     <string name="exc_rcd_hnt">V正在锻炼，加油V</string>
     <string name="edit_page_text">编辑</string>
     <string name="edit_save_text">保存</string>
@@ -43,6 +43,7 @@
     <string name="height">身高(cm)</string>
     <string name="weight">体重(kg)</string>
     <string name="hello">请您补全信息</string>
+    <string name="resting">休息中</string>
     <string name="toothin">太瘦了</string>
     <string name="thin">偏瘦</string>
     <string name="normal">正常</string>

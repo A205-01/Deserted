@@ -4,40 +4,62 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.view.View.OnClickListener;
+import com.loonies.exercisemanager.Service.RestTimer;
 import com.loonies.exercisemanager.data.ItemHelper;
 import com.loonies.exercisemanager.data.ListItemTextView;
 import com.loonies.exercisemanager.data.ListViewAdapterA;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ExerciseRecordingPage extends Activity {
+public class ExerciseRecordingPage extends Activity implements OnClickListener {
 
+    private SoundPool sp;
+    private int soundId;
     private List<ListItemTextView> data,dataAll;
     private ListView listview;
     private SQLiteDatabase db;
     private BaseAdapter adapter;
+    private Button timer;
+    private Button finished;
+    private RestTimer rRimer;
+    private TextView title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_recording_page);
+        title=(TextView)findViewById(R.id.r_title);
+        sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+        soundId=sp.load(this, R.raw.alright, 1);
+        finished=(Button)findViewById(R.id.exc_done);
+        timer=(Button)findViewById(R.id.set_timer_btn);
+        rRimer=new RestTimer(timer,title,60,this);
+        finished.setOnClickListener(this);
+        timer.setOnClickListener(this);
         listview=(ListView)findViewById(R.id.list_view3);
         db=new ItemHelper(this).getWritableDatabase();
         listview.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, final int arg2,
                                     long arg3) {
-                AlertDialog.Builder builder=new Builder(ExerciseRecordingPage.this);
+                AlertDialog.Builder builder = new Builder(ExerciseRecordingPage.this);
                 builder.setTitle(getText(R.string.recording));
                 builder.setMessage(getText(R.string.WIP));
                 builder.setPositiveButton(getText(R.string.done_button), new DialogInterface.OnClickListener() {
@@ -46,22 +68,20 @@ public class ExerciseRecordingPage extends Activity {
                         if (dataAll.get(arg2).getIsDone() < 3) {
                             String sqlFix = "update ItemDb set isDone='2'where id=" + Integer.toString(dataAll.get(arg2).getId());
                             db.execSQL(sqlFix);
-                        }
-                        else if (dataAll.get(arg2).getIsDone() > 3) {
+                        } else if (dataAll.get(arg2).getIsDone() > 3) {
                             String sqlFix = "update ItemDb set isDone='6'where id=" + Integer.toString(dataAll.get(arg2).getId());
                             db.execSQL(sqlFix);
                         }
                         onResume();
                     }
                 });
-                builder.setNegativeButton(getText(R.string.undone), new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getText(R.string.done_button), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (dataAll.get(arg2).getIsDone() < 3) {
                             String sqlFix = "update ItemDb set isDone='1'where id=" + Integer.toString(dataAll.get(arg2).getId());
                             db.execSQL(sqlFix);
-                        }
-                        else if (dataAll.get(arg2).getIsDone() > 3) {
+                        } else if (dataAll.get(arg2).getIsDone() > 3) {
                             String sqlFix = "update ItemDb set isDone='5'where id=" + Integer.toString(dataAll.get(arg2).getId());
                             db.execSQL(sqlFix);
                         }
@@ -92,8 +112,32 @@ public class ExerciseRecordingPage extends Activity {
         adapter=new ListViewAdapterA(this,data);
         listview.setAdapter(adapter);
     }
-    public void finishExc(View view){
-        Intent intent=new Intent(this,MainPage.class);
-        startActivity(intent);
+    protected void onPause(){
+        super.onPause();
+        if(rRimer.isRunning())
+            rRimer.stop();
+    }
+    public void play() {
+        //声音id 左声道 右声道 优先级
+        //loop loop mode (0 = no loop, -1 = loop forever)
+        //rate playback rate (1.0 = normal playback, range 0.5 to 2.0)
+        sp.play(soundId, 1.0f, 0.3f, 0, 0, 2.0f);
+    }
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.set_timer_btn:
+                if(!rRimer.isRunning()){
+                    rRimer.beginRun();
+                }
+                else if(rRimer.isRunning()){
+                    rRimer.stop();
+                }
+                break;
+            case R.id.exc_done:
+                Intent intent=new Intent(this,MainPage.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
     }
 }
