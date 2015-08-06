@@ -96,6 +96,7 @@ public class PlanPage extends Activity {
     public void addPlan(View view){
         Intent intent=new Intent(this,AddAnItemToPlanPage.class);
         startActivity(intent);
+        finish();
     }
     public void review(View view){
         Intent intent=new Intent(this,ExcerciseByPlanPage.class);

@@ -22,7 +22,8 @@
             android:layout_height="match_parent"
             android:text="@string/height"
             android:textSize="@dimen/title_btn"
-            android:layout_weight="0"/>
+            android:layout_weight="0"
+            android:autoText="false" />
         <EditText
             android:id="@+id/height"
             android:layout_width="match_parent"
@@ -31,7 +32,10 @@
             android:layout_weight="1"
             android:numeric="integer"
             android:clickable="false"
-            android:autoText="false" />
+            android:autoText="true"
+            android:editable="false"
+            android:longClickable="false"
+            android:linksClickable="false" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -44,7 +48,8 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:layout_weight="1"
-            android:numeric="integer" />
+            android:numeric="integer"
+            android:autoText="true" />
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
