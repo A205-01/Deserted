@@ -106,7 +106,7 @@ public class OxyPage extends Fragment implements OnClickListener,DatePickerDialo
         }
     }
     public void onDateSet(DatePicker dp, int year,int month, int dayOfMonth) {
-        this.now_time=year+"-"+(++month)+"-"+dayOfMonth;
+        this.now_time=year+"-"+(month+1)+"-"+dayOfMonth;
         Toast.makeText(this.getActivity(),this.now_time, Toast.LENGTH_LONG).show();
     }
     public static OxyPage newInstance(String param1, String param2) {
@@ -148,7 +148,7 @@ public class OxyPage extends Fragment implements OnClickListener,DatePickerDialo
         btnCancel.setOnClickListener(this);
         Time t=new Time();
         t.setToNow();
-        this.now_time=t.year+"-"+t.month+"-"+t.monthDay;
+        this.now_time=t.year+"-"+(t.month+1)+"-"+t.monthDay;
         return view;
     }
     @Override

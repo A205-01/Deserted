@@ -19,6 +19,8 @@ import com.loonies.exercisemanager.Service.RestTimer;
 import com.loonies.exercisemanager.data.ItemHelper;
 import com.loonies.exercisemanager.data.ListItemTextView;
 import com.loonies.exercisemanager.data.ListViewAdapterA;
+import com.loonies.exercisemanager.data.ListViewAdapterB;
+
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
@@ -59,31 +61,31 @@ public class ExerciseRecordingPage extends Activity implements OnClickListener {
         listview.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, final int arg2,
-                                    long arg3) {
+                                    final long arg3) {
                 AlertDialog.Builder builder = new Builder(ExerciseRecordingPage.this);
                 builder.setTitle(getText(R.string.recording));
                 builder.setMessage(getText(R.string.WIP));
                 builder.setPositiveButton(getText(R.string.done_button), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (dataAll.get(arg2).getIsDone() < 3) {
-                            String sqlFix = "update ItemDb set isDone='2'where id=" + Integer.toString(dataAll.get(arg2).getId());
+                        if (dataAll.get(findPosition(data, dataAll, arg2)).getIsDone() < 3) {
+                            String sqlFix = "update ItemDb set isDone='2'where id=" + Integer.toString(dataAll.get(findPosition(data, dataAll, arg2)).getId());
                             db.execSQL(sqlFix);
-                        } else if (dataAll.get(arg2).getIsDone() > 3) {
-                            String sqlFix = "update ItemDb set isDone='6'where id=" + Integer.toString(dataAll.get(arg2).getId());
+                        } else if (dataAll.get(findPosition(data, dataAll, arg2)).getIsDone() > 3) {
+                            String sqlFix = "update ItemDb set isDone='6'where id=" + Integer.toString(dataAll.get(findPosition(data, dataAll,arg2)).getId());
                             db.execSQL(sqlFix);
                         }
                         onResume();
                     }
                 });
-                builder.setNegativeButton(getText(R.string.done_button), new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getText(R.string.unfinished), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (dataAll.get(arg2).getIsDone() < 3) {
-                            String sqlFix = "update ItemDb set isDone='1'where id=" + Integer.toString(dataAll.get(arg2).getId());
+                        if (dataAll.get(findPosition(data, dataAll, arg2)).getIsDone() < 3) {
+                            String sqlFix = "update ItemDb set isDone='1'where id=" + Integer.toString(dataAll.get(findPosition(data, dataAll, arg2)).getId());
                             db.execSQL(sqlFix);
-                        } else if (dataAll.get(arg2).getIsDone() > 3) {
-                            String sqlFix = "update ItemDb set isDone='5'where id=" + Integer.toString(dataAll.get(arg2).getId());
+                        } else if (dataAll.get(findPosition(data, dataAll,arg2)).getIsDone() > 3) {
+                            String sqlFix = "update ItemDb set isDone='5'where id=" + Integer.toString(dataAll.get(findPosition(data,dataAll,arg2)).getId());
                             db.execSQL(sqlFix);
                         }
                         onResume();
@@ -97,7 +99,7 @@ public class ExerciseRecordingPage extends Activity implements OnClickListener {
         super.onResume();
         Time t=new Time();
         t.setToNow();
-        String now_time=t.year+"-"+t.month+"-"+t.monthDay;
+        String now_time=t.year+"-"+(t.month+1)+"-"+t.monthDay;
         data=new ArrayList<ListItemTextView>() ;
         dataAll=new ArrayList<ListItemTextView>() ;
         String sql="select * from ItemDb order by datetime desc ";
@@ -110,7 +112,7 @@ public class ExerciseRecordingPage extends Activity implements OnClickListener {
                 data.add(litv);
     }
         cursor.close();
-        adapter=new ListViewAdapterA(this,data);
+        adapter=new ListViewAdapterB(this,data);
         listview.setAdapter(adapter);
     }
     protected void onPause(){
@@ -127,6 +129,20 @@ public class ExerciseRecordingPage extends Activity implements OnClickListener {
     public void indicate(){
         Toast.makeText(this,getText(R.string.time_up), Toast.LENGTH_LONG).show();
     }
+
+    private int findPosition(List<ListItemTextView> data,List<ListItemTextView> dataAll,int arg2){
+        int idCur=data.get(arg2).getId();
+        int max=dataAll.size();
+        int count=0;
+        while(count<max){
+            if(dataAll.get(count).getId()==idCur){
+                return count;
+            }
+            count++;
+        }
+        return 0;
+    }
+
     public void onClick(View v){
         switch (v.getId()){
             case R.id.set_timer_btn:

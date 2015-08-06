@@ -38,28 +38,40 @@ public class PlanPage extends Activity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
                 // TODO Auto-generated method stub
-                if(dataAll.get(arg2).getIsDone()<3){
+                if(dataAll.get(findPosition(data,dataAll,arg2)).getIsDone()<3){
                     Intent intent= new Intent(PlanPage.this,EditOxyPage.class);
-                    intent.putExtra("id",dataAll.get(arg2).getId());
-                    intent.putExtra("name",dataAll.get(arg2).getItem());
-                    intent.putExtra("hours", dataAll.get(arg2).getHoursOrWeights());
-                    intent.putExtra("minutes",dataAll.get(arg2).getMinutesOrNumber());
-                    intent.putExtra("groups",dataAll.get(arg2).getGroups());
-                    intent.putExtra("timeEdit",dataAll.get(arg2).getWrTime());
+                    intent.putExtra("id", dataAll.get(findPosition(data, dataAll, arg2)).getId());
+                    intent.putExtra("name",dataAll.get(findPosition(data, dataAll, arg2)).getItem());
+                    intent.putExtra("hours", dataAll.get(findPosition(data, dataAll, arg2)).getHoursOrWeights());
+                    intent.putExtra("minutes",dataAll.get(findPosition(data, dataAll, arg2)).getMinutesOrNumber());
+                    intent.putExtra("groups",dataAll.get(findPosition(data, dataAll, arg2)).getGroups());
+                    intent.putExtra("timeEdit", dataAll.get(findPosition(data, dataAll, arg2)).getWrTime());
                     startActivity(intent);
                 }
-                else if(dataAll.get(arg2).getIsDone()>3){
+                else if(dataAll.get(findPosition(data, dataAll, arg2)).getIsDone()>3){
                     Intent intent= new Intent(PlanPage.this,EditStrnPage.class);
-                    intent.putExtra("id",dataAll.get(arg2).getId());
-                    intent.putExtra("name",dataAll.get(arg2).getItem());
-                    intent.putExtra("weights", dataAll.get(arg2).getHoursOrWeights());
-                    intent.putExtra("numbers",dataAll.get(arg2).getMinutesOrNumber());
-                    intent.putExtra("groups",dataAll.get(arg2).getGroups());
-                    intent.putExtra("timeEdit",dataAll.get(arg2).getWrTime());
+                    intent.putExtra("id",dataAll.get(findPosition(data, dataAll, arg2)).getId());
+                    intent.putExtra("name",dataAll.get(findPosition(data, dataAll, arg2)).getItem());
+                    intent.putExtra("weights", dataAll.get(findPosition(data, dataAll, arg2)).getHoursOrWeights());
+                    intent.putExtra("numbers",dataAll.get(findPosition(data, dataAll, arg2)).getMinutesOrNumber());
+                    intent.putExtra("groups",dataAll.get(findPosition(data, dataAll, arg2)).getGroups());
+                    intent.putExtra("timeEdit",dataAll.get(findPosition(data,dataAll,arg2)).getWrTime());
                     startActivity(intent);
                 }
             }
         });
+    }
+    private int findPosition(List<ListItemTextView> data,List<ListItemTextView> dataAll,int arg2){
+        int idCur=data.get(arg2).getId();
+        int max=dataAll.size();
+        int count=0;
+        while(count<max){
+            if(dataAll.get(count).getId()==idCur){
+                return count;
+            }
+            count++;
+        }
+        return 0;
     }
     protected void onResume(){
         super.onResume();
@@ -67,7 +79,7 @@ public class PlanPage extends Activity {
         dataAll=new ArrayList<ListItemTextView>() ;
         Time t=new Time();
         t.setToNow();
-        String now_time=t.year+"-"+t.month+"-"+t.monthDay;
+        String now_time=t.year+"-"+(t.month+1)+"-"+t.monthDay;
         String sqlo="select * from ItemDb order by datetime desc ";
         Cursor cursor=db.rawQuery(sqlo, null);
         while(cursor.moveToNext()){

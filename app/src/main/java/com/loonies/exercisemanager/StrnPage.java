@@ -139,11 +139,11 @@ public class StrnPage extends Fragment implements OnClickListener,DatePickerDial
         btnSave.setOnClickListener(this);
         Time t=new Time();
         t.setToNow();
-        this.now_time=t.year+"-"+t.month+"-"+t.monthDay;
+        this.now_time=t.year+"-"+(t.month+1)+"-"+t.monthDay;
         return view;
     }
     public void onDateSet(DatePicker dp, int year,int month, int dayOfMonth) {
-        this.now_time=year+"-"+(++month)+"-"+dayOfMonth;
+        this.now_time=year+"-"+(month+1)+"-"+dayOfMonth;
         Toast.makeText(this.getActivity(),this.now_time, Toast.LENGTH_LONG).show();
     }
     // TODO: Rename method, update argument and hook method into UI event
