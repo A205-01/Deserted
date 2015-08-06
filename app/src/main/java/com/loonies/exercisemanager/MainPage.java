@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -34,13 +35,13 @@ public class MainPage extends Activity implements OnClickListener {
     private Intent intent;
     private int hours, minutes;
     private long longtime;
-    private ImageButton btn;
+    private Button btn;
     private TextView BMI;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-        btn=(ImageButton)findViewById(R.id.notify_btn);
+        btn=(Button)findViewById(R.id.notify_btn);
         BMI=(TextView)findViewById(R.id.BMI);
         c=Calendar.getInstance();
         btn.setOnClickListener(this);

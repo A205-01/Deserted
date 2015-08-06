@@ -55,6 +55,7 @@
     <string name="recording">签字</string>
     <string name="unfinished">未达成</string>
     <string name="finished">完成</string>
+    <string name="info">我的信息</string>
     <string name="toofat">重度肥胖</string>
     <string name="tootoofat">极度肥胖</string>
     <string name="hello_world">Hello world!</string>

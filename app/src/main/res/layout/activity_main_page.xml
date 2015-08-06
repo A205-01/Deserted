@@ -41,15 +41,16 @@
                     android:onClick="startToPlanPage"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
-                <ImageButton
+                <Button
+                    android:background="@color/back_green"
                     android:id="@+id/notify_btn"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/btn3"
+                    android:layout_height="20dp"
+                    android:text="@string/info"
                     android:layout_gravity="bottom"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@+id/plan_btn"
-                    android:layout_alignStart="@+id/plan_btn" />
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
