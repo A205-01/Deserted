@@ -74,7 +74,7 @@ public class MainPage extends Activity implements OnClickListener {
         }
     }
     public void goExercising(View view){
-        Intent intent=new Intent(this,ExerciseDialog.class);
+        Intent intent=new Intent(this,ExerciseRecordingPage.class);
         startActivity(intent);
     }
     public void startToPlanPage(View view){

@@ -90,7 +90,7 @@ public class PlanPage extends Activity {
                 data.add(litv);
         }
         cursor.close();
-        adapter=new ListViewAdapterA(this,data);
+        adapter=new ListViewAdapterA(this,data,this);
         listview.setAdapter(adapter);
     }
     public void addPlan(View view){

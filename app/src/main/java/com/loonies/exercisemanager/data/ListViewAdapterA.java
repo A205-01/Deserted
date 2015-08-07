@@ -5,6 +5,7 @@ import com.loonies.exercisemanager.data.ListItemTextView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,18 @@ public class ListViewAdapterA extends BaseAdapter {
     private Context context ;
     private List<ListItemTextView> data ;
     private List<ListItemTextView> dataAll;
-
-    public ListViewAdapterA(Context context,List<ListItemTextView> data){
+    private int colorSwitch,size;
+    private String now_time;
+    private Activity a;
+    public ListViewAdapterA(Context context,List<ListItemTextView> data,Activity a){
         this.context=context;
         this.data=data;
+        this.a=a;
+        this.size=data.size();
+        colorSwitch=1;
+        Time t=new Time();
+        t.setToNow();
+        now_time=t.year+"-"+(t.month+1)+"-"+t.monthDay;
     }
     @Override
     public int getCount() {
@@ -53,6 +62,12 @@ public class ListViewAdapterA extends BaseAdapter {
         TextView item_time=(TextView) view.findViewById(R.id.base_item_time);
         ImageView item_done=(ImageView) view.findViewById(R.id.base_item_done);
         ListItemTextView myltv=data.get(arg0);
+        if(myltv.getWrTime().equals(now_time))
+            colorSwitch=1;
+        else if(!myltv.getWrTime().equals(now_time))
+            colorSwitch=2;
+        if(colorSwitch==2)
+            view.setBackgroundColor(a.getResources().getColor(R.color.listvo_bg));
         item_name.setText(myltv.getItem());
         item_time.setText(myltv.getWrTime());
         if(myltv.getIsDone()==0||myltv.getIsDone()==4)

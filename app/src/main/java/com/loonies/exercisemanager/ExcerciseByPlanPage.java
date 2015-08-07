@@ -76,7 +76,7 @@ public class ExcerciseByPlanPage extends Activity {
             dataAll.add(litv);
         }
         cursor.close();
-        adapter=new ListViewAdapterA(this,dataAll);
+        adapter=new ListViewAdapterA(this,dataAll,this);
         listview.setAdapter(adapter);
     }
 
